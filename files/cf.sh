@@ -9,16 +9,16 @@ echo ""
 echo ""
 #sub=$(</dev/urandom tr -dc a-z0-9 | head -c3)
 read -rp "Input Domain Name. Example ( BayuVpn211 ): " -e sub
-DOMAIN=alfawibu.my.id
-SUB_DOMAIN=${sub}.alfawibu.my.id
+DOMAIN=dewa.biz.id
+SUB_DOMAIN=${sub}.dewa.biz.id
 CF_ID=aurelcangtip07@gmail.com
-CF_KEY=c6a51c2a6e41589638bb18bf9c88451e
+CF_KEY=49f8c99fc68515d4b8694d5afb388cef4b77d
 set -euo pipefail
 IP=$(curl -sS ifconfig.me);
 echo "Updating DNS for ${SUB_DOMAIN}..."
-ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
--H "X-Auth-Email: ${CF_ID}" \
--H "X-Auth-Key: ${CF_KEY}" \
+ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=dewa.biz.id&status=active" \
+-H "X-Auth-Email: aurelcangtip07@gmail.com" \
+-H "X-Auth-Key: 49f8c99fc68515d4b8694d5afb388cef4b77d" \
 -H "Content-Type: application/json" | jq -r .result[0].id)
 RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records?name=${SUB_DOMAIN}" \
 -H "X-Auth-Email: ${CF_ID}" \
