@@ -62,7 +62,8 @@
                {
                  "id": "1d1c1d94-6987-4658-a4dc-8821a30fe7e0",
                  "alterId": 0
-#vmess
+### admin 2222-01-01
+},{"id": "6506deff-afed-4742-86bd-89bb6542ac51","alterId": 0,"email": "admin"
              }
           ]
        },
@@ -197,17 +198,20 @@
        }
     }
   ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "settings": {}
-    },
-    {
-      "protocol": "blackhole",
-      "settings": {},
-      "tag": "blocked"
-    }
-  ],
+  "outbounds":[
+{
+"protocol": "socks",
+"settings": {
+"servers": [
+{
+"address": "127.0.0.1",
+"port": 31303
+}
+]
+},
+"tag": "warp-socks-out"
+}
+],
   "routing": {
     "domainStrategy": "AsIs",
     "rules": [
