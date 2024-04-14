@@ -20,7 +20,7 @@ clear
 clear && clear && clear
 clear;clear;clear
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
-echo -e "  Auther : ${green}MAZ_FARUK® ${NC}${YELLOW}(${NC} ${green} OPEN SOURCE ${NC}${YELLOW})${NC}"
+echo -e "  Auther : ${green}ALFA ${NC}${YELLOW}(${NC} ${green} OPEN SOURCE ${NC}${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
 sleep 2
@@ -536,9 +536,9 @@ account default
 host smtp.gmail.com
 port 587
 auth on
-user oceantestdigital@gmail.com
-from oceantestdigital@gmail.com
-password jokerman77
+user oknuma2nyell@gmail.com
+from oknuma2nyell@gmail.com
+password zjangspyjnkdbbqv
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
@@ -733,6 +733,23 @@ else
 TIME_DATE="AM"
 fi
 print_success "Menu Packet"
+}
+function inwarp() {
+curl -s https://pkg.cloudflareclient.com/pubkey.gpg | sudo apt-key add - >/dev/null 2>&1
+    echo "deb http://pkg.cloudflareclient.com/ focal main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list >/dev/null 2>&1
+    systemctl enable warp-svc
+    warp-cli --accept-tos register
+    warp-cli --accept-tos set-mode proxy
+    warp-cli --accept-tos set-proxy-port 31303
+    warp-cli --accept-tos connect
+    warp-cli --accept-tos enable-always-on
+
+    local warpStatus=
+    warpStatus=$(curl -s --socks5 127.0.0.1:31303 https://www.cloudflare.com/cdn-cgi/trace | grep "warp" | cut -d "=" -f 2)
+
+    if [[ "${warpStatus}" == "on" ]]; then
+        echo -e "${Green}---> WARP started successfully"
+    fi
 }
 function enable_services(){
 clear
